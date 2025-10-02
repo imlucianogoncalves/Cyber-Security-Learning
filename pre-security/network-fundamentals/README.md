@@ -32,7 +32,7 @@ Dentro de cada computador tem uma NIC (Network Interface Card) que vem com um en
 
 A camada de **enlace de dados** também é responsável por apresentar os dados em um formato adequado para a transmissão.
 
-## 2. A Camada de Rede (Network Layer)
+## 3. A Camada de Rede (Network Layer)
 
 Aqui acontece o processo de roteamento e remontagem de dados.
 
@@ -203,3 +203,99 @@ Tem algumas portas padrão para facilitar uso.
 - **Server Message Block (SMB):445** - 
 igual ao FTP, mas não é client-server, então vc pode compartilhar com a impressora, por ex.
 - **Remote Desktop Protocol (RDP):3389** - tipo o SSH, mas com uma interface visual, igual usar aqueles app de acesso remoto.
+
+# Encaminhamento de Portas
+
+Sem o encaminhamento de portas, apps, serviços, como servers web só ficam acessíveis em rede local - isso é conhecido como **intranet**.
+
+Usando um server web como exemplo, ele envia seu conteúdo para o roteador com uma porta, o roteador converte o IPv4 privado em público e torna o tal serviço acessível pela devida porta, que no caso é 80.
+
+# Firewalls 101
+
+Firewall gerencia permissões e bloqueios de tráfego - o que pode entrar e o que pode sair.
+
+Pra isso, ele usa os seguintes fatores: 
+
+- **Origem** – de onde o tráfego vem.
+- **Destino** – para onde o tráfego vai.
+- **Porta** – qual porta está sendo usada (ex.: 80).
+- **Protocolo** – qual protocolo está em uso (TCP, UDP ou ambos).
+
+Eles fazem a inspeção de pacotes de info para determinar as respostas.
+
+Podem ser hardwares ou softwares.
+
+## Tipos de Firewall
+
+### Stateful (Com Estado)
+- Analisa **toda a conexão**, não apenas pacotes individuais.  
+- Decide dinamicamente com base no contexto (ex.: acompanha o handshake TCP).  
+- **Mais consumo de recursos** (memória/CPU).  
+- Se detectar comportamento malicioso numa conexão, **bloqueia o dispositivo ou a sessão inteira**.  
+- Mais inteligente para tráfego legítimo e controle fino.
+
+### Stateless / Sem-Estado
+- Usa **regras estáticas** por pacote (origem, destino, porta, protocolo).  
+- **Pouco uso de recursos** — rápido e simples.  
+- Menos inteligente: se não houver regra exata, o pacote passa ou é negado sem contexto.  
+- Útil para **tratar grandes volumes de tráfego** (ex.: mitigar DDoS) ou regras simples de filtragem.
+
+### Resumo Prático
+- Use **stateful** para segurança mais precisa e controle por conexão.  
+- Use **stateless** quando precisar de desempenho e regras simples em alta escala.
+
+# VPN (Virtual Private Network)
+
+Permite que dispositivos em redes separadas se comuniquem com segurança a partir de um túnel - os q estão dentro desse tunel formam sua própria rede privada.
+
+## Benefícios das VPNs
+- **Conexão entre redes geograficamente distintas:**  
+  Permite que empresas com escritórios em diferentes locais acessem recursos como servidores e infraestrutura remotamente.
+
+- **Privacidade:**  
+  VPNs usam criptografia para proteger os dados entre o remetente e o destinatário, tornando-os ilegíveis para terceiros.  
+  Útil especialmente em redes públicas de Wi-Fi.
+
+- **Anonimato:**  
+  Jornalistas, ativistas e usuários podem ocultar suas atividades do ISP e de intermediários.  
+  O nível de anonimato depende da política de registro da VPN.
+
+- **Segurança em plataformas educacionais:**  
+  Exemplo: TryHackMe usa VPN para acessar máquinas vulneráveis sem expô-las diretamente à Internet, protegendo tanto o usuário quanto a plataforma.
+
+---
+
+## Tecnologias de VPN
+
+| **Tecnologia** | **Descrição** |
+|----------------|---------------|
+| **PPP**        | Usado pelo PPTP para autenticação e criptografia de dados via chave privada e certificado público. Não permite roteamento de rede por si só. |
+| **PPTP**       | Point-to-Point Tunneling Protocol; transporta dados do PPP entre redes. Fácil de configurar, mas criptografia fraca. |
+| **IPSec**      | Internet Protocol Security; criptografa dados no framework IP. Mais difícil de configurar, mas oferece criptografia forte e é suportado por muitos dispositivos. |
+
+
+# Roteadores
+
+> Atuam na camada 3 do modelo OSI.
+
+Roteamento envolve a criação de um caminho entre as redes para que os dados possam ser entregues.
+
+Ele decide o melhor caminho a ser seguido a partir das perguntas:
+
+- Qual caminho é o mais curto?
+- Qual caminho é o mais confiável?
+- Qual caminho tem o meio mais rápido (por exemplo, cobre ou fibra)? 
+
+# Switches
+
+Forneçe um meio de conexão a varios dispositivos na rede local - podem facilitar muitos dispositivos usando cabos ethernet.
+
+> Podem operar na camada 2 e na camada 3 do modelo OSI. Mas uma coisa é exlusiva - um switch da camada 2 não pode operar na camada 3.
+
+---
+
+Os de camada 2 enviarão quadros (pacotes IP encapsulados) nos dispositivos conectados usando seu endereço MAC.
+
+Já os de camada 3, permitem VLAN (Virtual Local Network) - que permite um agrupamento de dispositivos, como por setor empresarial > setor comercial, tecnologia, etc.
+
+Aqui os setores podem acessar a internet, mas não comunicar-se entre sí.
