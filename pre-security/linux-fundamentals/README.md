@@ -79,4 +79,8 @@ Para abrir um HTTP.Server em python:
 
 MUUUUITO IMPORTANTE - vamos supor que consegui acesso a um terminal remoto e preciso transferir um arquivo pra ele, eu posso simplesmente subir um HTTP.Server e servir o arquivo de malware e/ou payload para executar no servidor.
 
+---
 
+**cron a partir do crontabs** para executar tarefas programadas.
+
+**crontab -e** para editar os contrabs e/ou adicionar.
