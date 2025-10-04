@@ -30,3 +30,43 @@ podemos ver Registros DNS, Habilitação do DHCP, etc.
 
 **[netstat]** mostra as conexões ao qual o computador está associada, netstat -abont mostra as conexões, processos, endereço ip, estado, etc.
 
+## Directories
+
+**[cd]** funciona como o pwd do linux - mostra o diretório atual
+
+**[dir]** funciona como o ls do linux - mostrando os diretórios e arquivos - parametro /a é como o -a do linux - mostra arquivos e diretórios escondidos.
+
+**[tree]** mostra de forma formatada os diretórios e subdiretórios de onde vc está.
+
+**[cd e mkdir]** são iguais ao linux, porém para remover, ao invés de rm, usamos **[rmdir]** que remove todo o diretório.
+
+## Files
+
+**[copy arquivo1.txt arquivo2.txt]** para copiar arquivos
+
+**[move]** para mover
+
+**[del / erase]** para remover arquivo.
+
+Da pra usar * pra aplicar um filtro na ação, como **[copy *.md C:\Markdown]**, copia todos osarquivos com .md para a pasta em específico.
+
+# Tarefas
+
+**[tasklist]** mostra os processos em andamento.
+
+exemplo: 
+
+**[tasklist /FI "imagename eq sshd.exe"]** mostra o processo que tem a coluna imagename = sshd.exe
+
+para fechar um processo usamos
+
+[**taskkill /PID target_pid**]
+
+
+## EXTRAS
+
+**[chkdsk]** checa o sistema e disco por erros
+
+**[sfc /scannow]** scanea os arquivos do sistema por erros e os repara se possível.
+
+## **/?** esse é o mestre.
