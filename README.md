@@ -1,6 +1,6 @@
 # Pentest Notes – TryHackMe
 
-Este repositório reúne **minhas anotações pessoais** durante o aprendizado do caminho de **Pentest** na plataforma [TryHackMe](https://tryhackme.com/).  
+Este repositório reúne **minhas anotações pessoais** durante o aprendizado do caminho de **SOC** na plataforma [TryHackMe](https://tryhackme.com/).  
 O objetivo é registrar conceitos, comandos, boas práticas e resumos dos tópicos estudados, servindo como referência para revisões futuras.
 
 ---
@@ -15,7 +15,7 @@ O objetivo é registrar conceitos, comandos, boas práticas e resumos dos tópic
 
 ## 🚀 Objetivo
 
-- Consolidar conhecimentos adquiridos durante o caminho de **Pentest**.  
+- Consolidar conhecimentos adquiridos durante o caminho de **SOC**.  
 - Criar um **guia pessoal de revisão rápida**.  
 - Compartilhar a evolução do aprendizado em segurança ofensiva.  
 
