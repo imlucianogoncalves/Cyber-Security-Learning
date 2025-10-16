@@ -17,7 +17,7 @@ O objetivo é registrar conceitos, comandos, boas práticas e resumos dos tópic
 
 - Consolidar conhecimentos adquiridos durante o caminho de **SOC**.  
 - Criar um **guia pessoal de revisão rápida**.  
-- Compartilhar a evolução do aprendizado em segurança ofensiva.  
+- Compartilhar a evolução do aprendizado em segurança defensiva.  
 
 ---
 
