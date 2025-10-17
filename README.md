@@ -1,6 +1,6 @@
-# Pentest Notes – TryHackMe
+# CYber Security – TryHackMe
 
-Este repositório reúne **minhas anotações pessoais** durante o aprendizado do caminho de **SOC** na plataforma [TryHackMe](https://tryhackme.com/).  
+Este repositório reúne **minhas anotações pessoais** durante o aprendizado do caminho de **Cyber Security** na plataforma [TryHackMe](https://tryhackme.com/).  
 O objetivo é registrar conceitos, comandos, boas práticas e resumos dos tópicos estudados, servindo como referência para revisões futuras.
 
 ---
@@ -27,5 +27,3 @@ Este repositório é apenas para **fins educacionais**.
 O uso de técnicas e ferramentas descritas aqui deve ser feito **exclusivamente em ambientes controlados e autorizados**.
 
 ---
-
-Testing

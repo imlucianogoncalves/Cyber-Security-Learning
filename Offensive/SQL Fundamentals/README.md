@@ -1,217 +1,214 @@
-# SQL - Fundamentals
+# SQL - Guia Completo de Fundamentos
 
-> Aqui vou compartilhar minhas notas pessoais sobre cada um dos temas aprendidos no camihno Pentester do TryHackMe
-
-Objetivos De Aprendizagem
-
-- Entenda o que são bancos de dados, bem como os principais termos e conceitos
-- Entenda os diferentes tipos de bancos de dados 
-- Entenda o que SQL é
-- Compreender e ser capaz de usar SQL Operações CRUD
-- Compreender e ser capaz de usar SQL Cláusulas Operações
-- Compreender e ser capaz de usar SQL Operações
-- Compreender e ser capaz de usar SQL Operadores
-- Compreender e ser capaz de usar SQL Funções
+Notas sobre SQL e bancos de dados do caminho Pentester do TryHackMe.
 
 ---
 
-## Relacionais vs. Não Relacionais
+## 📚 Objetivos de Aprendizagem
 
-- **Bancos de dados relacionais:** armazenam dados estruturados em tabelas (linhas e colunas). Os dados seguem um formato fixo e podem se relacionar entre diferentes tabelas — por exemplo, usuarios e historico_pedidos.
-
-- **Bancos de dados não relacionais:** armazenam dados não estruturados ou semiestruturados em formatos flexíveis (como documentos, chaves-valor ou grafos). São ideais quando os dados não seguem um padrão fixo, como documentos digitalizados com informações variadas.
-
----
-
-## Configurando MySQL
-
-Acessamos um banco de dados com:
-
-`mysql -u root -p` 
-
-`mysql -u usuario -p`
+- Entender o que são bancos de dados e seus conceitos principais
+- Conhecer os diferentes tipos de bancos de dados
+- Compreender o que é SQL
+- Dominar operações CRUD
+- Aprender cláusulas e operadores SQL
+- Utilizar funções SQL
 
 ---
 
-## Criando banco de dados
+## 🔄 Bancos de Dados: Relacionais vs. Não Relacionais
 
-Para criar um banco de dados, utilizamos 
+### Bancos Relacionais
+Armazenam dados estruturados em tabelas (linhas e colunas) com formato fixo. Os dados podem se relacionar entre diferentes tabelas.
 
-`CREATE DATABASE nome_do_banco;`
+**Exemplo:** Uma tabela de `usuarios` conectada a uma tabela de `historico_pedidos`.
 
-`SHOW DATABASES` mostra todos os banco de dados que temos.
+### Bancos Não-Relacionais
+Armazenam dados não estruturados ou semiestruturados em formatos flexíveis como documentos, chaves-valor ou grafos. Ideais quando os dados não seguem um padrão fixo.
 
----
-
-Para interagir com determinado banco de dados, precisamos falar para o MySQL que vamos acessar o banco X, isso é feito com:
-
-`USE banco_de_dados;`
-
-`DROP database nome_do_banco;` - exclui o banco de dados.
+**Exemplo:** Documentos digitalizados com informações variadas.
 
 ---
 
-Para criar tabelas, usamos o seguinte modelo:
+## 🔐 Conectando ao MySQL
 
+```sql
+mysql -u root -p
+mysql -u usuario -p
 ```
-mysql> CREATE TABLE example_table_name (
-    example_column1 data_type,
-    example_column2 data_type,
-    example_column3 data_type
+
+---
+
+## 💾 Operações com Bancos de Dados
+
+### Criar um banco de dados
+```sql
+CREATE DATABASE nome_do_banco;
+```
+
+### Listar todos os bancos
+```sql
+SHOW DATABASES;
+```
+
+### Selecionar um banco para usar
+```sql
+USE banco_de_dados;
+```
+
+### Deletar um banco de dados
+```sql
+DROP DATABASE nome_do_banco;
+```
+
+---
+
+## 📋 Trabalhando com Tabelas
+
+### Criar uma tabela
+```sql
+CREATE TABLE nome_tabela (
+    coluna1 tipo_dado,
+    coluna2 tipo_dado,
+    coluna3 tipo_dado
 );
 ```
 
-Que na prática ficaria como:
-
-```
-mysql> CREATE TABLE book_inventory (
+**Exemplo prático:**
+```sql
+CREATE TABLE book_inventory (
     book_id INT AUTO_INCREMENT PRIMARY KEY,
     book_name VARCHAR(255) NOT NULL,
     publication_date DATE
 );
 ```
 
-Para descrever a estrutura de determinada tabela, podemos usar o 
-
-`DESCRIBE nome_da_tabela`
-
----
-
-Podemos usar `ALTER` para mudar a estrutura da tabela, o que ficaria mais ou menos assim:
-
+### Visualizar estrutura da tabela
+```sql
+DESCRIBE nome_da_tabela;
 ```
-mysql> ALTER TABLE book_inventory
-    -> ADD page_count INT;
 
+### Modificar uma tabela (adicionar coluna)
+```sql
+ALTER TABLE book_inventory
+ADD page_count INT;
 ```
 
 ---
 
-Para incluir uma row em uma tabela, podemos usar:
+## ✏️ Operações CRUD
 
-```
-mysql> INSERT INTO books (id, name, published_date, description)
-    VALUES (1, "Android Security Internals", "2014-10-14", "An In-Depth Guide to Android's Security Architecture");
-```
-
----
-
-Agora, para ler os dados dessa ou outra tabela, podemos usar 
-
-`SELECT * FROM nome_da_tabela;`
-
----
-
-Da pra filtrar, selecionando apenas as colunas que você quiser, como:
-
-`SELECT name, description FROM books;`
-
----
-
-Para atualizar um item:
-
-```
-mysql> UPDATE books
-    SET description = "An In-Depth Guide to Android's Security Architecture."
-    WHERE id = 1;SELEC
+### CREATE - Inserir dados
+```sql
+INSERT INTO books (id, name, published_date, description)
+VALUES (1, "Android Security Internals", "2014-10-14", "An In-Depth Guide to Android's Security Architecture");
 ```
 
----
-
-Para deletar um item da tabela, usamos 
-
-`DELETE FROM books WHERE id = 1;`
-
----
-
-## Clauses
-
-`DISTINCT` evita duplicações quando executamos alguma query, como:
-
-`SELECT DISTINCT name FROM books;`
-
----
-
-`GROUP BY` agrupa por determinada condição.
-
+### READ - Ler dados
+**Selecionar tudo:**
+```sql
+SELECT * FROM nome_da_tabela;
 ```
-mysql> SELECT name, COUNT(*)
-    FROM books
-    GROUP BY name;
+
+**Selecionar colunas específicas:**
+```sql
+SELECT name, description FROM books;
+```
+
+### UPDATE - Atualizar dados
+```sql
+UPDATE books
+SET description = "An In-Depth Guide to Android's Security Architecture."
+WHERE id = 1;
+```
+
+### DELETE - Deletar dados
+```sql
+DELETE FROM books WHERE id = 1;
 ```
 
 ---
 
-`ORDER BY` 
+## 🎯 Cláusulas SQL
 
-Aqui o próprio nome ja diz, ele ordena o output com base no que você quer, o ASC é ascendente e DESC é descendente.
+### DISTINCT
+Remove duplicatas dos resultados.
 
-```
-mysql> SELECT *
-    FROM books
-    ORDER BY published_date ASC;
-```
-
----
-`HAVING`
-
-Nesse caso, é buscado pela reges onde temos o `LIKE`
-
-```
-mysql> SELECT name, COUNT(*)
-    FROM books
-    GROUP BY name
-    HAVING name LIKE '%Hack%';
+```sql
+SELECT DISTINCT name FROM books;
 ```
 
-## Operadores
+### ORDER BY
+Ordena os resultados em ordem ascendente (ASC) ou descendente (DESC).
 
-Temos o LIKE que sempre vem junto do WHERE e nos trás uma consulta sobre determinada alavra-chave, como:
-
-```
-mysql> SELECT *
-    FROM books
-    WHERE description LIKE "%guide%";
+```sql
+SELECT * FROM books ORDER BY published_date ASC;
+SELECT * FROM books ORDER BY published_date DESC;
 ```
 
----
+### GROUP BY
+Agrupa os resultados por uma ou mais colunas.
 
-O AND seleciona dois valores distintos.
-
+```sql
+SELECT name, COUNT(*) FROM books GROUP BY name;
 ```
-mysql> SELECT *
-    FROM books
-    WHERE category = "Offensive Security" AND name = "Bug Bounty Bootcamp";
+
+### HAVING
+Filtra grupos resultantes de GROUP BY (similar ao WHERE, mas para grupos).
+
+```sql
+SELECT name, COUNT(*)
+FROM books
+GROUP BY name
+HAVING name LIKE '%Hack%';
 ```
 
 ---
 
-OR, nos traz um dos dois valores, se o primeiro for true ele para, se o primeiro for false ele tenta o segundo
+## 🔍 Operadores SQL
 
+### LIKE
+Busca por padrões de texto. Use `%` como curinga para representar qualquer caractere.
+
+```sql
+SELECT * FROM books WHERE description LIKE "%guide%";
 ```
-mysql> SELECT *
-    FROM books
-    WHERE name LIKE "%Android%" OR name LIKE "%iOS%"; 
+
+### AND
+Retorna resultados que atendem TODAS as condições.
+
+```sql
+SELECT * FROM books
+WHERE category = "Offensive Security" AND name = "Bug Bounty Bootcamp";
+```
+
+### OR
+Retorna resultados que atendem PELO MENOS UMA das condições.
+
+```sql
+SELECT * FROM books
+WHERE name LIKE "%Android%" OR name LIKE "%iOS%";
+```
+
+### NOT
+Exclui resultados que atendem a condição.
+
+```sql
+SELECT * FROM books WHERE NOT description LIKE "%guide%";
+```
+
+### BETWEEN
+Seleciona valores dentro de um intervalo (inclusivo).
+
+```sql
+SELECT * FROM books WHERE id BETWEEN 2 AND 4;
 ```
 
 ---
 
-NOT exclui algo da consulta
+## 📝 Dicas Práticas
 
-```
-mysql> SELECT *
-    FROM books
-    WHERE NOT description LIKE "%guide%";
-```
-
-Nesse caso ele selecionou tudo da tabela, menos na linha que tiver ocorrencias de guide na descrição.
-
----
-
-BETWEEN pega valores entre números
-
-```
-mysql> SELECT *
-    FROM books
-    WHERE id BETWEEN 2 AND 4;
-```
+- Use `WHERE` para filtrar linhas individuais
+- Use `HAVING` para filtrar grupos (depois de GROUP BY)
+- Combine operadores com `AND`, `OR`, `NOT` para filtros mais complexos
+- O `LIKE` é sensível ao contexto; use `%` nos locais apropriados
+- Sempre use `WHERE` para ser específico ao deletar ou atualizar dados
