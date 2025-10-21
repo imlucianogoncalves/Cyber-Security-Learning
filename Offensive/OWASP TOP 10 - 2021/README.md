@@ -125,3 +125,32 @@ Risco principal: alto impacto com pouco esforço do atacante.
 
 Nesse desafio, analisei o CMS usado na URL, busquei por ele no Exploit DB - encontrei um exploit de RCE para aquela versão, executei e pronto.
 
+
+# 7. Identification and Authentication Failures
+
+A autenticação verifica a identidade do usuário e o gerenciamento de sessões mantém o login ativo por meio de cookies, já que o HTTP é sem estado. Falhas nesses mecanismos permitem acesso indevido a contas e dados sensíveis.
+
+As vulnerabilidades mais comuns são senhas fracas, ataques de força bruta e cookies previsíveis. 
+
+Para mitigá-las, deve-se exigir senhas fortes, limitar tentativas de login e implementar autenticação multifator (MFA).
+
+# 8. Software and Data Integrity Failures
+
+Integridade é a garantia de que um dado não foi alterado indevidamente. Em cibersegurança, ela assegura que arquivos e informações permaneçam intactos. Isso é verificado por meio de hashes (como MD5, SHA1 e SHA256), que geram valores únicos para cada arquivo — se o hash do arquivo baixado for igual ao original, ele não foi modificado.
+Falhas de integridade ocaorrem quando softwares ou dados são usados sem verificação, permitindo que invasores os alterem. Elas se dividem em falhas de integridade de software e falhas de integridade de dados.
+
+O que é: integridade garante que dados/tokens não sejam alterados indevidamente.
+
+Risco: se o token de sessão (ex.: cookie com JWT) for manipulável, atacante pode elevar privilégios ou se passar por outro usuário.
+
+Vulnerabilidade clássica: JWT alg: "none" — bibliotecas que aceitam esse cabeçalho e pulam checagem de assinatura permitem payloads forjados.
+
+Causa raiz: confiar no campo alg do token ou usar bibliotecas desatualizadas/erradas.
+
+Detecção: tokens com alg: none, assinaturas inválidas repeated, mudança súbita de role no payload, erros de verificação logados.
+
+Mitigações principais: proibir alg: "none", validar explicitamente algoritmos permitidos, usar bibliotecas atualizadas, preferir RS/ES, proteger chaves, exp curto, HttpOnly/Secure/SameSite em cookies, logging/alerting e checagem de autorização no servidor.
+
+Teste seguro: só em laboratório isolado (VM/container próprio); nunca atacar sistemas sem permissão.
+
+Regra prática de implementação: ao verificar JWT, especifique a lista de algoritmos aceitos e rejeite qualquer token que não tenha assinatura válida.
