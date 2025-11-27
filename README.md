@@ -61,6 +61,7 @@ Você pode avançar quando conseguir pegar um shell "www-data" e mapear completa
 ### O que aprender
 
 #### Reconhecimento Passivo
+
 - whois
 - crt.sh
 - DNSDumpster
@@ -68,6 +69,7 @@ Você pode avançar quando conseguir pegar um shell "www-data" e mapear completa
 - subfinder
 
 #### Reconhecimento Ativo
+
 - nmap avançado
 - rustscan
 - Análise de banners
@@ -125,6 +127,7 @@ Você pode avançar quando olha um banner de serviço e consegue dizer quais sã
 ### O que aprender
 
 #### Vulnerabilidades Principais
+
 - SQL Injection (todos os tipos)
 - XSS (todos os tipos)
 - SSRF
@@ -139,6 +142,7 @@ Você pode avançar quando olha um banner de serviço e consegue dizer quais sã
 - JWT attacks
 
 #### Ferramentas
+
 - Burp Suite (avançado)
 - Intruder / Repeater / Collaborator
 - wfuzz
@@ -200,6 +204,7 @@ Você pode avançar quando lê uma aplicação web por 10 minutos e identifica p
 ### O que aprender
 
 #### Exploração por Serviço
+
 - FTP
 - SSH
 - SMB
@@ -210,6 +215,7 @@ Você pode avançar quando lê uma aplicação web por 10 minutos e identifica p
 - MySQL/MongoDB/PostgreSQL
 
 #### Privilege Escalation Linux
+
 - SUID / SGID
 - sudo -l abuses
 - PATH hijacking
@@ -220,6 +226,7 @@ Você pode avançar quando lê uma aplicação web por 10 minutos e identifica p
 - Wildcard injection
 
 #### Privilege Escalation Windows
+
 - Unquoted service paths
 - Permissões fracas
 - seImpersonatePrivilege
@@ -282,6 +289,7 @@ Dado um shell limitado, você encontra pelo menos 3 rotas diferentes para virar 
 ### O que aprender
 
 #### Active Directory
+
 - LDAP structure
 - Kerberos (TGT, TGS, SPNs)
 - Kerberoasting
@@ -297,6 +305,7 @@ Dado um shell limitado, você encontra pelo menos 3 rotas diferentes para virar 
 - Forest → Child trust exploitation
 
 #### Movimento Lateral
+
 - PsExec
 - WinRM
 - WMI Exec
@@ -304,6 +313,7 @@ Dado um shell limitado, você encontra pelo menos 3 rotas diferentes para virar 
 - Token impersonation
 
 #### Pivoting
+
 - proxychains
 - sshuttle
 - chisel
@@ -337,6 +347,7 @@ Red Team = AD mastery. A maior parte das empresas opera em AD. Você precisa nav
 **Desafio:** Monte seu próprio AD com 2 hosts + 1 DC e comprometa-o.
 
 Objetivo:
+
 1. Initial access
 2. Movimento lateral
 3. Elevar até Domain Admin
@@ -355,6 +366,7 @@ Dado um AD desconhecido, você consegue mapear, pivotar e encontrar caminho até
 ### O que aprender
 
 #### OPSEC Ofensivo
+
 - Logs
 - Artefatos
 - Evasão
@@ -362,6 +374,7 @@ Dado um AD desconhecido, você consegue mapear, pivotar e encontrar caminho até
 - Anti-forense
 
 #### Evasão de AV/EDR
+
 - Syscalls diretas
 - Injection
 - Desobfuscation & reobfuscation
@@ -370,12 +383,14 @@ Dado um AD desconhecido, você consegue mapear, pivotar e encontrar caminho até
 - Uso de LOLBins
 
 #### C2 Frameworks
+
 - Sliver
 - Havoc
 - Mythic
 - Covenant
 
 #### Infraestrutura
+
 - Redirectors
 - Domain fronting
 - TLS montagem
