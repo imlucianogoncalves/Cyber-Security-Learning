@@ -34,8 +34,8 @@ Aproximadamente 90% das explorações levam você a um shell de baixo privilégi
 
 ### Checklist da fase
 
-- [ ] Entendo permissões numéricas e simbólicas
-- [ ] Sei identificar SUID/SGID
+- [x] Entendo permissões numéricas e simbólicas
+- [x] Sei identificar SUID/SGID
 - [ ] Sei ler logs com journalctl
 - [ ] Sei manipular processos
 - [ ] Sei configurar/entender systemctl
