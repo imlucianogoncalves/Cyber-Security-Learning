@@ -1,417 +1,454 @@
-# Roadmap Completo: Pentest → Red Team
-
-Este roadmap fornece um caminho estruturado para desenvolver habilidades de pentesting até alcançar o nível de Red Team, com checkpoints, mini-laboratórios e recursos para cada fase.
+# 🎯 Roadmap Completo de Pentest & Red Team
 
 ---
 
-## Fase 1 — Linux Profissional para Pentester
+## 🟥 PARTE 1 — RESULTADO RÁPIDO (0 → JUNIOR OPERACIONAL)
 
-**Duração:** 2 a 3 semanas  
-**Objetivo:** Operar com total autonomia em qualquer shell Linux comprometido
+**Objetivo:**  
+Fazer você hackear máquinas, entender vulnerabilidades, escalar privilégios básicos e terminar apto para fazer labs (HTB Easy, TryHackMe) sozinho.
 
-### O que você precisa aprender
-
-- Permissões (chmod, chown, chgrp)
-- SUID / SGID / Sticky Bit
-- Processos: ps, top, pgrep, pkill
-- systemctl e gerenciamento de serviços
-- Logs e journalctl
-- Redes: ip, ss, netstat, tcpdump
-- Bash (loops, condicionais, pipes, redirecionamento)
-- Variáveis de ambiente
-- Reverse e bind shells
-
-### Por que isso importa no pentest?
-
-Aproximadamente 90% das explorações levam você a um shell de baixo privilégio. Sem domínio de Linux, você não consegue interpretar o que está vendo. No Red Team, isso é ainda mais crítico: é necessário manter OPSEC, pivotar, explorar serviços, escalar privilégios e não deixar rastros.
-
-### Recursos de estudo (gratuitos)
-
-- **OverTheWire Bandit** (obrigatório)
-- "The Linux Command Line" – edição gratuita
-- Linux Journey
-- Man pages (man chmod, man tcpdump, etc.)
-
-### Checklist da fase
-
-- [x] Entendo permissões numéricas e simbólicas
-- [x] Sei identificar SUID/SGID
-- [ ] Sei ler logs com journalctl
-- [ ] Sei manipular processos
-- [ ] Sei configurar/entender systemctl
-- [ ] Sei usar tcpdump para capturar tráfego
-- [ ] Sei escrever um script bash simples
-- [ ] Sei abrir reverse shells em várias linguagens
-
-### Mini-desafio
-
-**Desafio:** Crie um script bash que monitora processos suspeitos e grava logs a cada 10 segundos. Depois, crie um cronjob para executá-lo automaticamente.
-
-### Critério de conclusão
-
-Você pode avançar quando conseguir pegar um shell "www-data" e mapear completamente o sistema: usuários, permissões, serviços, processos, rede e pontos potenciais de privesc — sem tutoriais.
+**Tempo:** 1 a 3 meses (com 3–4 horas/dia)
 
 ---
 
-## Fase 2 — Enumeração e Reconhecimento Profissional
+### 1. Fundamentos (O mínimo necessário pra operar)
 
-**Duração:** 2 semanas  
-**Objetivo:** Descobrir tudo sem explodir nada
+**O que aprender:**
 
-### O que aprender
+- Linux básico (cd, ls, cp, grep, find, chmod, chown, ps…)
+- Redes essenciais (TCP/IP, DNS, HTTP)
+- Entendimento do Shell
+- Nmap básico
+- Browsers + DevTools
 
-#### Reconhecimento Passivo
+**Checklist:**
 
-- whois
-- crt.sh
-- DNSDumpster
-- Shodan / Censys
-- subfinder
+- [x] Sei navegar no sistema com facilidade
+- [x] Sei manipular arquivos e permissões
+- [x] Sei entender um nmap -sV
+- [x] Sei analisar resposta HTTP
 
-#### Reconhecimento Ativo
-
-- nmap avançado
-- rustscan
-- Análise de banners
-- Fingerprinting manual
-- ffuf / gobuster
-- enum4linux
-- smbclient
-
-### Por que isso importa?
-
-Exploração é 20%. **Enumeração é 80%**. No Red Team, isso define:
-
-- Vetor de entrada
-- Superfície de ataque
-- Ativos expostos
-- Portas internas úteis
-- Caminhos para pivotar
-
-### Recursos de estudo
-
-- Nmap Book (gratuito)
-- Guia oficial FFUF
-- HackTricks (melhor fonte viva de enumeração)
-- Labs HTB "Starting Point"
-
-### Checklist
-
-- [ ] Rodar nmap em modos diferentes (rápido, completo, stealth)
-- [ ] Enumerar SMB manual e com ferramentas
-- [ ] Identificar tech stack web
-- [ ] Fazer fuzzing de diretórios com wordlists corretas
-- [ ] Interpretar banners manualmente
-- [ ] Identificar CVE potencial apenas pelo banner
-
-### Mini-desafio
-
-**Desafio:** Pegue 3 máquinas fáceis do VulnHub e faça apenas ENUMERAÇÃO, sem explorar. Escreva um relatório com:
-
-- Portas abertas
-- Serviços
-- Possíveis vulnerabilidades
-- Hipóteses de exploração
-
-### Critério de conclusão
-
-Você pode avançar quando olha um banner de serviço e consegue dizer quais são os ataques possíveis, mesmo sem tentar.
+**Mini-desafio:**  
+Comprometer Metasploitable2 explorando 2 serviços básicos.
 
 ---
 
-## Fase 3 — Web Hacking Profundo (OWASP + Técnicas Práticas)
+### 2. Enumeração Básica (o que um iniciante PRECISA dominar)
 
-**Duração:** 6 a 8 semanas  
-**Objetivo:** Dominar Web a ponto de identificar qualquer vulnerabilidade comum de forma manual
+**O que aprender:**
 
-### O que aprender
+- Nmap (varredura total, portas, scripts)
+- WhatWeb
+- gobuster / ffuf básico
+- enum4linux básico
+- Leitura de banners
 
-#### Vulnerabilidades Principais
+**Checklist:**
 
-- SQL Injection (todos os tipos)
-- XSS (todos os tipos)
-- SSRF
-- SSTI
-- LFI / RFI / Path Traversal
-- Upload bypass
-- IDOR / Broken Access Control
-- Open Redirect
-- Command Injection
-- Deserialization
-- Auth bypass
-- JWT attacks
+- [x] Rodar nmap corretamente
+- [ ] Identificar serviços vulneráveis pelo banner
+- [ ] Fazer fuzzing simples
 
-#### Ferramentas
-
-- Burp Suite (avançado)
-- Intruder / Repeater / Collaborator
-- wfuzz
-- ffuf
-
-### Por que isso importa?
-
-Hoje 70% das entradas de Red Team são via:
-
-- Web apps internos
-- APIs
-- Aplicações mal configuradas
-- Painéis de administração
-- IDORs e falhas de autorização
-
-É onde você desenvolve seu pensamento ofensivo lógico.
-
-### Recursos de estudo
-
-- **PortSwigger Web Security Academy** (100% obrigatório)
-- OWASP Web Testing Guide
-- Juice Shop
-- Root-Me web
-
-### Checklist
-
-- [ ] Identificar SQLi manualmente
-- [ ] Executar XSS avançado (DOM, stored, filter bypass)
-- [ ] Encontrar IDOR sem ferramenta
-- [ ] Identificar e explorar SSRF
-- [ ] Explorar upload bypass com polyglots
-- [ ] Usar Burp Suite com total fluidez
-- [ ] Fazer fuzzing inteligente de parâmetros
-- [ ] Manipular cookies, sessões e JWT
-
-### Mini-desafio
-
-**Desafio Web Completo:** No Juice Shop, encontre:
-
-1. 1 SQLi
-2. 1 XSS
-3. 1 falha de upload
-4. 1 IDOR
-5. 1 SSRF
-
-Documente tudo como se fosse para um cliente.
-
-### Critério de conclusão
-
-Você pode avançar quando lê uma aplicação web por 10 minutos e identifica pontos de entrada, parâmetros interessantes e caminhos de exploração com naturalidade.
+**Mini-desafio:**  
+Em 3 máquinas fáceis do VulnHub: apenas listar superfície de ataque (portas, serviços, tech stack).
 
 ---
 
-## Fase 4 — Exploração de Serviços + Privilege Escalation Linux & Windows
+### 3. Web Hacking Básico
 
-**Duração:** 8 semanas  
-**Objetivo:** Comprometer hosts e virar root/SYSTEM sempre que possível
+**Aprender:**
 
-### O que aprender
+- OWASP Top 10 superficial
+- SQLi básica
+- XSS básico
+- LFI simples
+- Upload malicioso básico
 
-#### Exploração por Serviço
+**Checklist:**
 
-- FTP
-- SSH
-- SMB
+- [ ] Identificar parâmetros vulneráveis
+- [ ] Fazer SQLi com ajuda de sqlmap
+- [ ] Explorar XSS simples
+- [ ] Subir webshell via upload
+
+**Mini-desafio:**  
+Completar 5 labs básicos do PortSwigger.
+
+---
+
+### 4. Shell e Privilege Escalation Básica
+
+**Aprender:**
+
+- SUID discovery
+- sudo -l abusos
+- PATH Hijacking simples
+- Cronjobs básicos expostos
+- LinPEAS (interpretar saída)
+
+**Checklist:**
+
+- [ ] Encontrar SUIDs
+- [ ] Abusar de sudo mal configurado
+- [ ] Entender saída do linpeas
+
+**Mini-desafio:**  
+Virar root em 3 máquinas fáceis do VulnHub.
+
+---
+
+### 5. Ciclo de Pentest Básico
+
+**Aprender:**
+
+- Recon
+- Enumeração
+- Exploração
+- Escalação
+- Relatório simples
+
+**Checklist:**
+
+- [ ] Capto evidências
+- [ ] Explico descoberta
+- [ ] Explico impacto
+
+**Mini-desafio:**  
+Fazer um relatório real sobre a máquina "Basic Pentesting" do TryHackMe.
+
+---
+
+### ✅ RESULTADO DO NÍVEL 1
+
+- ✔ Você hackeia máquinas "Easy"
+- ✔ Você entende vulnerabilidades comuns
+- ✔ Você sabe ganhar e manter um shell básico
+- ✔ Você pensa como pentester iniciante
+
+---
+
+## 🟧 PARTE 2 — MELHORANDO (JUNIOR → PLENO)
+
+**Objetivo:**  
+Fazer você se tornar um pentester independente, capaz de comprometer ambientes e explicar tudo tecnicamente com clareza.
+
+**Tempo:** 3 a 8 meses
+
+---
+
+### 1. Linux PROFISSIONAL
+
+**Aprender:**
+
+- Permissões avançadas
+- SUID / SGID / Sticky bit
+- Processos (ps/top/pgrep/pkill)
+- systemctl (serviços, unidades, timers)
+- journalctl (logs, filtros)
+- tcpdump
+- bash avançado
+
+**Checklist:**
+
+- [ ] Interpretar processos suspeitos
+- [ ] Ler logs com precisão
+- [ ] Manipular serviços
+- [ ] Criar scripts operacionais
+
+**Mini-desafio:**  
+Encontrar e explorar um serviço root vulnerável via análise de processos.
+
+---
+
+### 2. Enumeração Profissional
+
+**Aprender:**
+
+- nmap avançado (stealth, evasão, scripts NSE)
+- ffuf avançado (param fuzzing)
+- SMB/RPC enum profissional
+- SNMP
 - Redis
-- Docker
-- Jenkins
 - Rsync
-- MySQL/MongoDB/PostgreSQL
+- Fingerprinting manual
 
-#### Privilege Escalation Linux
+**Checklist:**
 
-- SUID / SGID
-- sudo -l abuses
-- PATH hijacking
+- [ ] Identificar CVEs só lendo banner
+- [ ] Fuzzing inteligente
+- [ ] Enumerar SMB sem ferramentas automáticas
+
+**Mini-desafio:**  
+Pegar as portas de uma máquina e listar 5 hipóteses de exploração para cada serviço.
+
+---
+
+### 3. Web Hacking Profundo
+
+**Aprender:**
+
+- SQLi manual (error-based, blind, boolean, time)
+- XSS avançado (DOM, stored, polyglots)
+- SSTI
+- SSRF com bypass
+- LFI → RCE
+- Upload bypass avançado
+- JWT attacks
+- Race conditions
+- Cache poisoning
+- Request smuggling básico
+
+**Checklist:**
+
+- [ ] Identificar 10 classes de bugs manualmente
+- [ ] Usar Burp Intruder com raciocínio
+- [ ] Explorar SSRF e pivotar internamente
+
+**Mini-desafio:**  
+Encontrar 5 vulnerabilidades diferentes no Juice Shop.
+
+---
+
+### 4. Exploração de Serviços (Intermediário)
+
+**Aprender:**
+
+- FTP/SSH/SMTP/Redis/SMB
+- Jenkins, Docker, Rsync
+- CVE research
+- Exploração sem metasploit
+
+**Checklist:**
+
+- [ ] Comprometer serviço sem tool automática
+- [ ] Fazer chains de exploração
+
+**Mini-desafio:**  
+Comprometer máquina sem usar metasploit.
+
+---
+
+### 5. Privilege Escalation Profunda
+
+**Aprender:**
+
+**Linux:**
+
+- Wildcards
 - Capabilities
-- Cronjobs
-- Kernel exploits
+- NFS misconfigs
 - Docker escapes
-- Wildcard injection
+- Kernel exploits com segurança
 
-#### Privilege Escalation Windows
+**Windows:**
 
-- Unquoted service paths
-- Permissões fracas
-- seImpersonatePrivilege
-- PrintSpoofer / RoguePotato
-- Token abuse
-- Registry escalation
-- PowerShell Constrained Mode bypass
-- SAM/LSA dumping
+- Windows PrivEsc
+- Unquoted paths
+- Weak permissions
+- SeImpersonate
+- Tokens
+- PowerShell privesc
 
-### Por que isso importa?
+**Checklist:**
 
-Ganhar acesso é apenas metade da batalha. O Red Team precisa:
+- [ ] Encontrar 3 caminhos diferentes para root
+- [ ] Entender completamente linpeas/winpeas
 
-- Escalar
-- Persistir
-- Viver na rede
-- Mover lateralmente
-
-É aqui que os pentesters de verdade começam a se diferenciar.
-
-### Recursos de estudo
-
-- HackTricks (privesc bible)
-- GTFOBins
-- PayloadAllTheThings
-- TryHackMe "Linux PrivEsc"
-- TryHackMe "Windows PrivEsc"
-
-### Checklist
-
-- [ ] Identificar SUID vulnerável
-- [ ] Abusar de sudo com scripts inseguros
-- [ ] Explorar serviços mal configurados
-- [ ] Escalar privilege via capabilities
-- [ ] Abusar de seImpersonatePrivilege
-- [ ] Executar PrintSpoofer ou equivalente
-- [ ] Identificar Windows misconfigs manualmente
-- [ ] Usar linpeas / winpeas com entendimento
-
-### Mini-desafio
-
-**Desafio:** Pegue 5 máquinas do VulnHub/HTB Easy e:
-
-1. Comprometa
-2. Escale
-3. Documente
-4. Refaça depois sem ferramentas automáticas
-
-### Critério de conclusão
-
-Dado um shell limitado, você encontra pelo menos 3 rotas diferentes para virar root.
+**Mini-desafio:**  
+Virar root em 10 máquinas fáceis/médias.
 
 ---
 
-## Fase 5 — Active Directory, Movimento Lateral & Pivoting
+### 6. Active Directory Básico → Intermediário
 
-**Duração:** 8 a 12 semanas  
-**Objetivo:** Operar exatamente como um invasor interno
+**Aprender:**
 
-### O que aprender
-
-#### Active Directory
-
-- LDAP structure
-- Kerberos (TGT, TGS, SPNs)
+- Kerberos básico
+- SPNs
 - Kerberoasting
-- AS-REP roasting
-- BloodHound (análise real)
-- Delegações
-- Pass-the-Hash
-- Pass-the-Ticket
-- Overpass-the-Hash
-- Golden / Silver Tickets
-- DC Sync / DC Shadow
-- GPO abuse
-- Forest → Child trust exploitation
+- AS-REP
+- BloodHound
 
-#### Movimento Lateral
+**Checklist:**
 
-- PsExec
-- WinRM
-- WMI Exec
-- SMB pivot
-- Token impersonation
+- [ ] Enumerar domínio
+- [ ] Encontrar caminhos de ataque
+- [ ] Explorar roasted users
 
-#### Pivoting
-
-- proxychains
-- sshuttle
-- chisel
-- socat
-
-### Por que isso importa?
-
-Red Team = AD mastery. A maior parte das empresas opera em AD. Você precisa navegar, quebrar, escalar e sobreviver dentro dele.
-
-### Recursos de estudo
-
-- HackTricks AD
-- Attacktive Directory (gratuito)
-- BloodHound docs
-- MITRE ATT&CK
-- IppSec (HTB AD machines)
-
-### Checklist
-
-- [ ] Extrair SPNs
-- [ ] Realizar kerberoasting
-- [ ] AS-REP roasting
-- [ ] Criar tickets forjados
-- [ ] Identificar caminhos em BloodHound
-- [ ] Mover lateralmente de 3 formas
-- [ ] Pivotar entre redes segmentadas
-- [ ] Manter persistência discreta no AD
-
-### Mini-desafio
-
-**Desafio:** Monte seu próprio AD com 2 hosts + 1 DC e comprometa-o.
-
-Objetivo:
-
-1. Initial access
-2. Movimento lateral
-3. Elevar até Domain Admin
-
-### Critério de conclusão
-
-Dado um AD desconhecido, você consegue mapear, pivotar e encontrar caminho até DA sem tutoriais.
+**Mini-desafio:**  
+Comprometer o laboratório "Attacktive Directory".
 
 ---
 
-## Fase 6 — Red Team de Verdade (OPSEC, Evasão, C2)
+### ✅ RESULTADO DO NÍVEL 2
 
-**Duração:** Contínua  
-**Objetivo:** Operar com sigilo, persistência e stealth
-
-### O que aprender
-
-#### OPSEC Ofensivo
-
-- Logs
-- Artefatos
-- Evasão
-- Engano
-- Anti-forense
-
-#### Evasão de AV/EDR
-
-- Syscalls diretas
-- Injection
-- Desobfuscation & reobfuscation
-- Bypass de AMSI
-- Bypass de ETW
-- Uso de LOLBins
-
-#### C2 Frameworks
-
-- Sliver
-- Havoc
-- Mythic
-- Covenant
-
-#### Infraestrutura
-
-- Redirectors
-- Domain fronting
-- TLS montagem
-
-### Checklist
-
-- [ ] Criar infra red team
-- [ ] Configurar C2
-- [ ] Criar payload minimamente evasivo
-- [ ] Usar técnicas de injeção
-- [ ] Fazer OPSEC de logs
-- [ ] Operar sem acionar EDR básico
-
-### Mini-desafio
-
-**Desafio:** Monte infraestrutura mínima com Sliver + redirector Nginx. Gere um implant e execute em máquina isolada.
+- ✔ Você hackeia máquinas "Medium"
+- ✔ Você conduz pentests inteiros sozinho
+- ✔ Você escala privilégios com lógica
+- ✔ Você entende AD básico
+- ✔ Você já é o que chamamos de Pentester Pleno
 
 ---
 
-## Notas Finais
+## 🟩 PARTE 3 — ESPECIALISTA (PLENO → SÊNIOR → RED TEAM)
 
-Este roadmap é um guia progressivo. Cada fase constrói sobre a anterior, e é fundamental não pular etapas. A prática constante, documentação de processos e revisão de conceitos são essenciais para a evolução de pentester para Red Team operator.
+**Objetivo:**  
+Criar um profissional com nível das empresas top (SpecterOps, NCC, TrustedSec). Esse nível inclui tudo: web avançado, rede, AD, evasão, C2, OPSEC, cloud, etc.
 
-**Lembre-se:** A diferença entre um pentester e um Red Team operator não está apenas nas técnicas, mas na mentalidade operacional, no pensamento adversário e na capacidade de manter persistência e sigilo em ambientes hostis.
+**Tempo:** 1 a 3 anos
+
+---
+
+### 1. HTTP & Web Avançado (nível pesquisador)
+
+**Aprender:**
+
+- Request smuggling avançado
+- H2C smuggling
+- Cache poisoning real
+- WebSockets hacking
+- OAuth & OIDC
+- HTTP/2, HTTP/3
+- CDN misconfigs
+- WAF bypass moderno (Unicode, caching, malformed requests)
+
+**Mini-desafio:**  
+Quebre um aplicativo com técnicas de request smuggling.
+
+---
+
+### 2. Network Deep-Dive
+
+**Aprender:**
+
+- VLAN hopping
+- Router exploitation
+- IPv6 ataques (mitm6)
+- NAC bypass
+- Wi-Fi enterprise exploitation
+- VPN internals
+- Firewall bypasses
+
+**Mini-desafio:**  
+Montar laboratório com 3 redes segmentadas e pivotar entre elas.
+
+---
+
+### 3. Active Directory Avançado
+
+**Aprender:**
+
+- Silver/Golden tickets
+- DCSync
+- DCShadow
+- Amsi bypass
+- NTLM relaying profissional
+- Child/Forest trust exploitation
+- Evasão em AD
+- Post-exploitation stealth
+
+**Mini-desafio:**  
+Comprometer um domínio → pivotar → comprometer outro domínio (forest).
+
+---
+
+### 4. Red Team (C2, OPSEC, Evasão, Implantação)
+
+**Aprender:**
+
+- Sliver / Havoc / Mythic
+- Payload stages e carregadores
+- Injectors (syscall, thread hijack, process hollowing)
+- ETW bypass
+- AMSI bypass
+- EDR evasion
+- Infra C2 real (redirectors, domain fronting, TLS)
+
+**Mini-desafio:**  
+Montar Sliver + redirector + payload evasivo. Operar por 24h sem acionar deteção.
+
+---
+
+### 5. Cloud Security (AWS)
+
+**Aprender:**
+
+- IAM avançado
+- Assume-role attacks
+- SSRF → metadata → takeover
+- S3 exploitation
+- Lambda execution abuse
+- Cloud persistence
+
+**Mini-desafio:**  
+Comprometer ambiente simulado AWSGoat.
+
+---
+
+### 6. Mobile Security
+
+**Aprender:**
+
+- Android reversing
+- iOS internals
+- API abuse
+- MITM de mobile traffic
+
+**Mini-desafio:**  
+Encontrar 3 bugs reais num APK local.
+
+---
+
+### 7. DevOps / CI/CD Security
+
+**Aprender:**
+
+- GitLab RCE
+- Jenkins privilege abuse
+- Supply chain attacks
+- Docker → K8S pivots
+
+**Mini-desafio:**  
+Explorar pipeline vulnerável e obter secrets.
+
+---
+
+### 8. Reverse Engineering & Exploit Dev
+
+**Aprender:**
+
+- Buffer overflow avançado
+- ROP
+- ASLR bypass
+- Heap exploitation
+- Ghidra / IDA
+
+**Mini-desafio:**  
+Desenvolver exploit para binário vulnerável.
+
+---
+
+### 9. Physical & Social Engineering
+
+**Aprender:**
+
+- RFID cloning
+- Lockpicking
+- Tailgating profissional
+- BadUSB
+- Payload drops
+
+**Mini-desafio:**  
+Criar hardware implant funcional (ambiente controlado).
+
+---
+
+### ✅ RESULTADO DO NÍVEL 3
+
+- ✔ Você é capaz de operar como Red Team real
+- ✔ Você domina AD, evasão, payloads, pivoting, cloud, web avançado
+- ✔ Você tem nível para trabalhar em qualquer empresa top
+
+---
+
+**🎓 Boa sorte na sua jornada!**
