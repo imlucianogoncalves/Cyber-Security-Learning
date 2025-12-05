@@ -1,8 +1,8 @@
-# 🎯 Roadmap Completo de Pentest & Red Team
+# Roadmap Completo de Pentest & Red Team
 
 ---
 
-## 🟥 PARTE 1 — RESULTADO RÁPIDO (0 → JUNIOR OPERACIONAL)
+## PARTE 1 — RESULTADO RÁPIDO (0 → JUNIOR OPERACIONAL)
 
 **Objetivo:**  
 Fazer você hackear máquinas, entender vulnerabilidades, escalar privilégios básicos e terminar apto para fazer labs (HTB Easy, TryHackMe) sozinho.
@@ -47,7 +47,7 @@ Comprometer Metasploitable2 explorando 2 serviços básicos.
 
 - [x] Rodar nmap corretamente
 - [ ] Identificar serviços vulneráveis pelo banner
-- [ ] Fazer fuzzing simples
+- [x] Fazer fuzzing simples
 
 **Mini-desafio:**  
 Em 3 máquinas fáceis do VulnHub: apenas listar superfície de ataque (portas, serviços, tech stack).
@@ -118,7 +118,7 @@ Fazer um relatório real sobre a máquina "Basic Pentesting" do TryHackMe.
 
 ---
 
-### ✅ RESULTADO DO NÍVEL 1
+### RESULTADO DO NÍVEL 1
 
 - ✔ Você hackeia máquinas "Easy"
 - ✔ Você entende vulnerabilidades comuns
@@ -127,7 +127,7 @@ Fazer um relatório real sobre a máquina "Basic Pentesting" do TryHackMe.
 
 ---
 
-## 🟧 PARTE 2 — MELHORANDO (JUNIOR → PLENO)
+## PARTE 2 — MELHORANDO (JUNIOR → PLENO)
 
 **Objetivo:**  
 Fazer você se tornar um pentester independente, capaz de comprometer ambientes e explicar tudo tecnicamente com clareza.
@@ -280,7 +280,7 @@ Comprometer o laboratório "Attacktive Directory".
 
 ---
 
-### ✅ RESULTADO DO NÍVEL 2
+### RESULTADO DO NÍVEL 2
 
 - ✔ Você hackeia máquinas "Medium"
 - ✔ Você conduz pentests inteiros sozinho
@@ -290,7 +290,7 @@ Comprometer o laboratório "Attacktive Directory".
 
 ---
 
-## 🟩 PARTE 3 — ESPECIALISTA (PLENO → SÊNIOR → RED TEAM)
+## PARTE 3 — ESPECIALISTA (PLENO → SÊNIOR → RED TEAM)
 
 **Objetivo:**  
 Criar um profissional com nível das empresas top (SpecterOps, NCC, TrustedSec). Esse nível inclui tudo: web avançado, rede, AD, evasão, C2, OPSEC, cloud, etc.
